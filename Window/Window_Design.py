@@ -1,5 +1,5 @@
 from tkinter import filedialog
-from PyQt5.QtWidgets import QApplication, QMainWindow,QDateEdit,QFrame, QPushButton,QTextEdit,QDialogButtonBox,QLabel,QLineEdit,QComboBox
+from PyQt5.QtWidgets import QApplication, QMainWindow,QDateEdit,QFrame, QPushButton,QTextEdit, QLabel,QLineEdit,QComboBox, QMenu, QAction
 import sys
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QRect
@@ -18,10 +18,72 @@ class Window(QMainWindow):
         self.UiComponents()
         self.show()
     def UiComponents(self):
+        menubar = self.menuBar()
+        menubar.setStyleSheet("background-color: red;")
+        filemenu = menubar.addMenu("File")
+        filemenu.setStyleSheet("background-color: olive;")
+        newFileAct = QAction("New", self)
+        newFileAct.setShortcut("Ctrl+N")
+        Editmenu = menubar.addMenu("Edit")
+        Editmenu.setStyleSheet("background-color: orange;")
+        Viewmenu = menubar.addMenu("View")
+        Viewmenu.setStyleSheet("background-color: lightgreen;")
+        Formatmenu = menubar.addMenu("Format")
+        Formatmenu.setStyleSheet("background-color: lightblue;")
+        Helpmenu = menubar.addMenu("Help")
+        Helpmenu.setStyleSheet("background-color: violet;")
+        openfiledeskAct = QAction("import from desk", self)
+        openfiledeskAct.setShortcut("Ctrl+Alt+D")
+        openfilecldAct = QAction("import from cloud", self)
+        openfilecldAct.setShortcut("Ctrl+Alt+C")
+        openFileMenu = QMenu('Open', self)
+        openFileMenu.setStyleSheet("background-color: chocolate;")
+        #savefileAct = QAction("Save", self)
+        #savefileAct.setShortcut("Ctrl+S")
+        saveasfileAct = QAction("Save As", self)
+        saveasfileAct.setShortcut("Ctrl+Alt+S")
+        printfileAct = QAction("Print", self)
+        printfileAct.setShortcut("Ctrl+P")
+        Exit = QAction("Exit", self)
+        Undo = QAction("Undo", self)
+        Undo.setShortcut("Ctrl+Z")
+        Redo = QAction("Redo", self)
+        Redo.setShortcut("Ctrl+Y")
+        Cut = QAction("Cut", self)
+        Cut.setShortcut("Ctrl+X")
+        Copy = QAction("Copy", self)
+        Copy.setShortcut("Ctrl+C")
+        Paste = QAction("Paste", self)
+        Paste.setShortcut("Ctrl+V")
+        Delete = QAction("Delete", self)
+        Delete.setShortcut("Del")
+        SA = QAction("Select All", self)
+        SA.setShortcut("Ctrl+A")
+        Font = QAction("Font", self)
+        StatusBar = QAction("Status Bar", self)
+        VH = QAction("View Help", self)
+        openFileMenu.addAction(openfiledeskAct)
+        openFileMenu.addAction(openfilecldAct)
+        filemenu.addAction(newFileAct)
+        filemenu.addMenu(openFileMenu)
+        #filemenu.addAction(savefileAct)
+        filemenu.addAction(saveasfileAct)
+        filemenu.addAction(printfileAct)
+        filemenu.addAction(Exit)
+        Editmenu.addAction(Undo)
+        Editmenu.addAction(Redo)
+        Editmenu.addAction(Cut)
+        Editmenu.addAction(Copy)
+        Editmenu.addAction(Paste)
+        Editmenu.addAction(Delete)
+        Editmenu.addAction(SA)
+        Formatmenu.addAction(Font)
+        Viewmenu.addAction(StatusBar)
+        Helpmenu.addAction(VH)
         self.label_4 = QLabel("...Memorandom of Marks...",self)  # Creates Label
         self.label_4.move(250,10)
         self.label_4.resize(350,31)
-        self.label_4.setGeometry(QRect(250, 10, 350, 31))  # Dimensions of Label
+        self.label_4.setGeometry(QRect(250, 20, 350, 31))  # Dimensions of Label
         font = QtGui.QFont()  # Sets Font
         font.setFamily("Myanmar Text")
         font.setPointSize(16)
@@ -177,12 +239,27 @@ class Window(QMainWindow):
 
         self.lineEdit_Student_name = QLineEdit(self)  # Creates Line Edit for Student Name
         self.lineEdit_Student_name.setGeometry(QRect(130, 55, 211, 22))  # Dimensions of Line Edit of Student Name
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkGreen)
+        self.lineEdit_Student_name.setPalette(Palette)
+        self.lineEdit_Student_name.setToolTip("Enter Student Name")
         self.lineEdit_Father_name = QLineEdit(self)  # Creates Line Edit for Father's Name
         self.lineEdit_Father_name.setGeometry(QRect(130, 80, 211, 22))  # Dimensions of Line Edit of Father's Name
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
+        self.lineEdit_Father_name.setPalette(Palette)
+        self.lineEdit_Father_name.setToolTip("Enter Father's Name")
         self.lineEdit_Hall_Ticket_Number = QLineEdit(self)  # Creates Line Edit for Hall Ticket Number
         self.lineEdit_Hall_Ticket_Number.setGeometry(QRect(495, 55, 211, 22))  # Dimensions of Line Edit of Hall Ticket Number
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkYellow)
+        self.lineEdit_Hall_Ticket_Number.setPalette(Palette)
+        self.lineEdit_Hall_Ticket_Number.setToolTip("Enter Hall Ticket Number")
         self.comboBox_Class = QComboBox(self)  # Creates Combo Box for Class
         self.comboBox_Class.setGeometry(QRect(410, 80, 128, 22))  # Dimensions of Combo Box of Class
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkRed)
+        self.comboBox_Class.setPalette(Palette)
         self.comboBox_Class.setEditable(False)
         self.comboBox_Class.setObjectName("comboBox_Class")  # Sets Object Name
         self.comboBox_Class.addItem("")
@@ -198,30 +275,76 @@ class Window(QMainWindow):
         self.comboBox_Class.addItem("")
         self.dateEdit = QDateEdit(self)  # Creates Date Edit
         self.dateEdit.setGeometry(QRect(130, 110, 100, 22))  # Dimensions of Date Edit
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.magenta)
+        self.dateEdit.setPalette(Palette)
+        self.dateEdit.setToolTip("Enter Your Date of Birth")
         self.textEdit_Telugu = QTextEdit("0",self)  # Creates TExt Edit for Telugu
         self.textEdit_Telugu.setGeometry(QRect(160, 140, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.blue)
+        self.textEdit_Telugu.setPalette(Palette)
+        self.textEdit_Telugu.setToolTip("Enter Telugu Marks")
         self.textEdit_Hindi = QTextEdit("0",self)  # Creates Text Edit for Hindi
         self.textEdit_Hindi.setGeometry(QRect(160, 180, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkCyan)
+        self.textEdit_Hindi.setPalette(Palette)
+        self.textEdit_Hindi.setToolTip("Enter Hindi Marks")
         self.textEdit_English = QTextEdit("0",self)  # Creates Text Edit for English
         self.textEdit_English.setGeometry(QRect(160, 220, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkGray)
+        self.textEdit_English.setPalette(Palette)
+        self.textEdit_English.setToolTip("Enter English Marks")
         self.textEdit_Maths = QTextEdit("0",self)  # Creates Text Edit for Maths
         self.textEdit_Maths.setGeometry(QRect(160, 260, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.black)
+        self.textEdit_Maths.setPalette(Palette)
+        self.textEdit_Maths.setToolTip("Enter Mathematics Marks")
         self.textEdit_Science = QTextEdit("0",self)  # Creates Text Edit for Science
         self.textEdit_Science.setGeometry(QRect(160, 300, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
+        self.textEdit_Science.setPalette(Palette)
+        self.textEdit_Science.setToolTip("Enter Science Marks")
         self.textEdit_Social = QTextEdit("0",self)  # Creates Text Edit for Social
         self.textEdit_Social.setGeometry(QRect(160, 340, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkBlue)
+        self.textEdit_Social.setPalette(Palette)
+        self.textEdit_Social.setToolTip("Enter Social Marks")
         self.textEdit_Total = QTextEdit(self)  # Creates Text Edit for Total Marks
         self.textEdit_Total.setGeometry(QRect(540, 170, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.magenta)
+        self.textEdit_Total.setPalette(Palette)
         self.textEdit_Average = QTextEdit(self)  # Creates Text Edit for Average Marks
         self.textEdit_Average.setGeometry(QRect(540, 210, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkRed)
+        self.textEdit_Average.setPalette(Palette)
         self.textEdit_Percentage = QTextEdit(self)  # Creates Text Edit for Percentage of the Total Marks
         self.textEdit_Percentage.setGeometry(QRect(540, 250, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkMagenta)
+        self.textEdit_Percentage.setPalette(Palette)
         self.textEdit__Division = QTextEdit(self)  # Creates Text Edit for Division
         self.textEdit__Division.setGeometry(QRect(360, 410, 141, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.blue)
+        self.textEdit__Division.setPalette(Palette)
         self.textEdit_Result = QTextEdit(self)  # Creates Text Edit for Result
         self.textEdit_Result.setGeometry(QRect(360, 450, 104, 31))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkBlue)
+        self.textEdit_Result.setPalette(Palette)
         self.textEdit__Message = QTextEdit("Fill up your Data and Enter Your Marks of all Subjects",self)  # Creates Text Edit for Message
         self.textEdit__Message.setGeometry(QRect(360, 490, 260, 45))
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
+        self.textEdit__Message.setPalette(Palette)
         self.pushButton_Get_Result = QPushButton("Get Result",self)  # Creates Push Button Get Result
         self.pushButton_Get_Result.setGeometry(QRect(450, 120, 93, 28))  # Dimensions of Push Button Get Result
         font = QtGui.QFont()  # Sets Font
@@ -239,14 +362,6 @@ class Window(QMainWindow):
         font.setStrikeOut(False)
         font.setWeight(75)
         self.pushButton_Reset.setFont(font)
-        self.pushButton_Save = QPushButton("Save As",self)  # Creates Push Button Save
-        self.pushButton_Save.setGeometry(QRect(640, 445, 80, 28))  # Dimensions of Push Button Save
-        font = QtGui.QFont()  # Sets Font
-        font.setBold(True)
-        font.setUnderline(True)
-        font.setItalic(True)
-        font.setWeight(75)
-        self.pushButton_Save.setFont(font)
         self.frame = QFrame(self)
         self.frame.setGeometry(QRect(250, 400, 375, 145))
         font = QtGui.QFont()
@@ -265,7 +380,11 @@ class Window(QMainWindow):
         self.pushButton_Get_Result.clicked.connect(self.Total_Result)
         self.pushButton_Get_Result.clicked.connect(self.Calculate)
         self.pushButton_Reset.clicked.connect(self.Reset)
-        self.pushButton_Save.clicked.connect(self.Save)
+        saveasfileAct.triggered.connect(self.Save)
+        openfilecldAct.triggered.connect(self.Open)
+        openfiledeskAct.triggered.connect(self.Open)
+        StatusBar.triggered.connect(self.Status_Bar)
+
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.comboBox_Class.setItemText(0, _translate("Dialog", "Select Your Class"))
@@ -511,10 +630,16 @@ class Window(QMainWindow):
         file.write("\n*******************************************************************************")
         file.close()
         sys.exit()
+    def Open(self):
+        files = [('Text Document', '*.txt'), ('Python File', '*.py'), ("Excel File", '*.XLS'),
+                 ("Word Document File", '*.doc')]
+        file = filedialog.askopenfile(mode='r', filetypes=files, defaultextension = files)
+        file.close()
+        sys.exit()
+    def Status_Bar(self):
+        self.statusBar().showMessage("Aditya Burugu")
+        self.statusBar().setStyleSheet("background-color : pink")
 
-        App = QApplication(sys.argv)
-        window = Window()
-        sys.exit(App.exec())
 if __name__ == "__main__":
     App = QApplication(sys.argv)
     window = Window()
