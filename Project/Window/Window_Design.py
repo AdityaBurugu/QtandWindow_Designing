@@ -10,7 +10,7 @@ class Window(QMainWindow):
         left = 200
         top = 70
         width = 736
-        height = 565
+        height = 570
         Icon = "Icon.png"
         self.setWindowTitle(title)
         self.setWindowIcon(QtGui.QIcon(Icon))
@@ -347,6 +347,9 @@ class Window(QMainWindow):
         self.textEdit__Message.setPalette(Palette)
         self.pushButton_Get_Result = QPushButton("Get Result",self)  # Creates Push Button Get Result
         self.pushButton_Get_Result.setGeometry(QRect(450, 120, 93, 28))  # Dimensions of Push Button Get Result
+        Palette = QtGui.QPalette()
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
+        self.pushButton_Get_Result.setPalette(Palette)
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -384,6 +387,7 @@ class Window(QMainWindow):
         openfilecldAct.triggered.connect(self.Open)
         openfiledeskAct.triggered.connect(self.Open)
         StatusBar.triggered.connect(self.Status_Bar)
+        Exit.triggered.connect(self.Exit)
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
@@ -482,7 +486,6 @@ class Window(QMainWindow):
             self.textEdit_Percentage.clear()
 
         #####  Creating a Function Named Total_Result   ######
-
     def Total_Result(self):
         totalsum = float(self.textEdit_Telugu.toPlainText()) + float(self.textEdit_Hindi.toPlainText()) + float(
             self.textEdit_English.toPlainText()) + float(self.textEdit_Maths.toPlainText()) + float(
@@ -514,7 +517,6 @@ class Window(QMainWindow):
             self.textEdit__Message.clear()
 
         #####  Creating a Function Named Reset   ######
-
     def Reset(self):
         self.textEdit_Telugu.clear()
         self.textEdit_Hindi.clear()
@@ -564,7 +566,6 @@ class Window(QMainWindow):
         self.comboBox_Class.setItemText(10, _translate("Dialog", "10th Class"))
 
         #####  Creating a Function Named Save   ######
-
     def Save(self):
         files = [('Text Document', '*.txt'), ('Python File', '*.py'), ("Excel File", '*.XLS'),
                  ("Word Document File", '.doc')]
@@ -630,18 +631,25 @@ class Window(QMainWindow):
         file.write("\n*******************************************************************************")
         file.close()
         sys.exit()
+
     def Open(self):
         files = [('Text Document', '*.txt'), ('Python File', '*.py'), ("Excel File", '*.XLS'),
                  ("Word Document File", '*.doc')]
         file = filedialog.askopenfile(mode='r', filetypes=files, defaultextension = files)
         file.close()
         sys.exit()
+
     def Status_Bar(self):
-        self.statusBar().showMessage("Aditya Burugu")
+        self.statusBar().showMessage("Aditya Burugu's Program")
         self.statusBar().setStyleSheet("background-color : pink")
 
-if __name__ == "__main__":
+    def Exit(self):
+        exit(Window)
+
+def Main():
     App = QApplication(sys.argv)
     window = Window()
     sys.exit(App.exec())
-    
+
+if __name__ == "__main__":
+    Main()
