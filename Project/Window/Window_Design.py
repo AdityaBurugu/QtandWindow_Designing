@@ -1,7 +1,7 @@
 from tkinter import filedialog
 from PyQt5.QtWidgets import QApplication, QMainWindow,QDateEdit,QFrame, QPushButton,QTextEdit, QLabel,QLineEdit,QComboBox, QMenu, QAction
 import sys
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QRect
 class Window(QMainWindow):
     def __init__(self):
@@ -19,32 +19,28 @@ class Window(QMainWindow):
         self.show()
     def UiComponents(self):
         menubar = self.menuBar()
-        menubar.setStyleSheet("background-color: red;")
         filemenu = menubar.addMenu("File")
-        filemenu.setStyleSheet("background-color: olive;")
         newFileAct = QAction("New", self)
         newFileAct.setShortcut("Ctrl+N")
         Editmenu = menubar.addMenu("Edit")
-        Editmenu.setStyleSheet("background-color: orange;")
         Viewmenu = menubar.addMenu("View")
-        Viewmenu.setStyleSheet("background-color: lightgreen;")
         Formatmenu = menubar.addMenu("Format")
-        Formatmenu.setStyleSheet("background-color: lightblue;")
         Helpmenu = menubar.addMenu("Help")
-        Helpmenu.setStyleSheet("background-color: violet;")
         openfiledeskAct = QAction("import from desk", self)
         openfiledeskAct.setShortcut("Ctrl+Alt+D")
         openfilecldAct = QAction("import from cloud", self)
         openfilecldAct.setShortcut("Ctrl+Alt+C")
         openFileMenu = QMenu('Open', self)
-        openFileMenu.setStyleSheet("background-color: chocolate;")
         #savefileAct = QAction("Save", self)
         #savefileAct.setShortcut("Ctrl+S")
         saveasfileAct = QAction("Save As", self)
+        Icon = 'Save.png'
+        saveasfileAct.setIcon(QtGui.QIcon(Icon))
         saveasfileAct.setShortcut("Ctrl+Alt+S")
         printfileAct = QAction("Print", self)
         printfileAct.setShortcut("Ctrl+P")
         Exit = QAction("Exit", self)
+        Exit.setShortcut("Esc")
         Undo = QAction("Undo", self)
         Undo.setShortcut("Ctrl+Z")
         Redo = QAction("Redo", self)
@@ -61,6 +57,7 @@ class Window(QMainWindow):
         SA.setShortcut("Ctrl+A")
         Font = QAction("Font", self)
         StatusBar = QAction("Status Bar", self)
+        StatusBar.setShortcut("F7")
         VH = QAction("View Help", self)
         openFileMenu.addAction(openfiledeskAct)
         openFileMenu.addAction(openfilecldAct)
@@ -141,7 +138,7 @@ class Window(QMainWindow):
         font.setWeight(75)
         self.DOB.setFont(font)
         self.Telugu = QLabel("Telugu :",self)  # Creates Label Telugu
-        self.Telugu.setGeometry(QRect(80, 148, 55, 16))  # Dimensions of Label Telugu
+        self.Telugu.setGeometry(QRect(80, 145, 55, 16))  # Dimensions of Label Telugu
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -149,7 +146,7 @@ class Window(QMainWindow):
         font.setWeight(75)
         self.Telugu.setFont(font)
         self.Hindi = QLabel("Hindi :",self)  # Creates Label Hindi
-        self.Hindi.setGeometry(QRect(80, 185, 55, 21))  # Dimensions of Label Hindi
+        self.Hindi.setGeometry(QRect(80, 182, 55, 21))  # Dimensions of Label Hindi
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -157,7 +154,7 @@ class Window(QMainWindow):
         font.setWeight(75)
         self.Hindi.setFont(font)
         self.English = QLabel("English :",self)  # Creates Label English
-        self.English.setGeometry(QRect(80, 230, 55, 16))  # Dimensions of Label Hindi
+        self.English.setGeometry(QRect(80, 225, 55, 16))  # Dimensions of Label Hindi
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -165,7 +162,7 @@ class Window(QMainWindow):
         font.setWeight(75)
         self.English.setFont(font)
         self.Maths = QLabel("Maths :",self)  # Creates Label Maths
-        self.Maths.setGeometry(QRect(80, 270, 81, 16))  # Dimensions of Label Maths
+        self.Maths.setGeometry(QRect(80, 265, 81, 16))  # Dimensions of Label Maths
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -173,7 +170,7 @@ class Window(QMainWindow):
         font.setWeight(75)
         self.Maths.setFont(font)
         self.Science = QLabel("Science :",self)  # Creats Label Science
-        self.Science.setGeometry(QRect(80, 310, 55, 16))  # Dimensions of Label Science
+        self.Science.setGeometry(QRect(80, 305, 55, 16))  # Dimensions of Label Science
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -181,7 +178,7 @@ class Window(QMainWindow):
         font.setWeight(75)
         self.Science.setFont(font)
         self.Social = QLabel("Social :",self)  # Creates Label Social
-        self.Social.setGeometry(QRect(80, 350, 55, 16))  # Dimensions of Label Social
+        self.Social.setGeometry(QRect(80, 345, 55, 16))  # Dimensions of Label Social
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setItalic(True)
@@ -239,27 +236,18 @@ class Window(QMainWindow):
 
         self.lineEdit_Student_name = QLineEdit(self)  # Creates Line Edit for Student Name
         self.lineEdit_Student_name.setGeometry(QRect(130, 55, 211, 22))  # Dimensions of Line Edit of Student Name
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkGreen)
-        self.lineEdit_Student_name.setPalette(Palette)
+        self.lineEdit_Student_name.setPlaceholderText("Enter Student Name")
         self.lineEdit_Student_name.setToolTip("Enter Student Name")
         self.lineEdit_Father_name = QLineEdit(self)  # Creates Line Edit for Father's Name
         self.lineEdit_Father_name.setGeometry(QRect(130, 80, 211, 22))  # Dimensions of Line Edit of Father's Name
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
-        self.lineEdit_Father_name.setPalette(Palette)
+        self.lineEdit_Father_name.setPlaceholderText("Enter Father's Name")
         self.lineEdit_Father_name.setToolTip("Enter Father's Name")
         self.lineEdit_Hall_Ticket_Number = QLineEdit(self)  # Creates Line Edit for Hall Ticket Number
         self.lineEdit_Hall_Ticket_Number.setGeometry(QRect(495, 55, 211, 22))  # Dimensions of Line Edit of Hall Ticket Number
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkYellow)
-        self.lineEdit_Hall_Ticket_Number.setPalette(Palette)
+        self.lineEdit_Hall_Ticket_Number.setPlaceholderText("Enter Hall Ticket Number")
         self.lineEdit_Hall_Ticket_Number.setToolTip("Enter Hall Ticket Number")
         self.comboBox_Class = QComboBox(self)  # Creates Combo Box for Class
         self.comboBox_Class.setGeometry(QRect(410, 80, 128, 22))  # Dimensions of Combo Box of Class
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkRed)
-        self.comboBox_Class.setPalette(Palette)
         self.comboBox_Class.setEditable(False)
         self.comboBox_Class.setObjectName("comboBox_Class")  # Sets Object Name
         self.comboBox_Class.addItem("")
@@ -276,70 +264,43 @@ class Window(QMainWindow):
         self.dateEdit = QDateEdit(self)  # Creates Date Edit
         self.dateEdit.setGeometry(QRect(130, 110, 100, 22))  # Dimensions of Date Edit
         Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.magenta)
+        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.blue)
         self.dateEdit.setPalette(Palette)
         self.dateEdit.setToolTip("Enter Your Date of Birth")
-        self.textEdit_Telugu = QTextEdit("0",self)  # Creates TExt Edit for Telugu
-        self.textEdit_Telugu.setGeometry(QRect(160, 140, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.blue)
-        self.textEdit_Telugu.setPalette(Palette)
+        self.textEdit_Telugu = QLineEdit(self)  # Creates TExt Edit for Telugu
+        self.textEdit_Telugu.setGeometry(QRect(160, 140, 130, 25))
+        self.textEdit_Telugu.setPlaceholderText("Enter Telugu Marks")
         self.textEdit_Telugu.setToolTip("Enter Telugu Marks")
-        self.textEdit_Hindi = QTextEdit("0",self)  # Creates Text Edit for Hindi
-        self.textEdit_Hindi.setGeometry(QRect(160, 180, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkCyan)
-        self.textEdit_Hindi.setPalette(Palette)
+        self.textEdit_Hindi = QLineEdit(self)  # Creates Text Edit for Hindi
+        self.textEdit_Hindi.setGeometry(QRect(160, 180, 130, 25))
+        self.textEdit_Hindi.setPlaceholderText("Enter Hindi Marks")
         self.textEdit_Hindi.setToolTip("Enter Hindi Marks")
-        self.textEdit_English = QTextEdit("0",self)  # Creates Text Edit for English
-        self.textEdit_English.setGeometry(QRect(160, 220, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkGray)
-        self.textEdit_English.setPalette(Palette)
+        self.textEdit_English = QLineEdit(self)  # Creates Text Edit for English
+        self.textEdit_English.setGeometry(QRect(160, 220, 130, 25))
+        self.textEdit_English.setPlaceholderText("Enter English Marks")
         self.textEdit_English.setToolTip("Enter English Marks")
-        self.textEdit_Maths = QTextEdit("0",self)  # Creates Text Edit for Maths
-        self.textEdit_Maths.setGeometry(QRect(160, 260, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.black)
-        self.textEdit_Maths.setPalette(Palette)
+        self.textEdit_Maths = QLineEdit(self)  # Creates Text Edit for Maths
+        self.textEdit_Maths.setGeometry(QRect(160, 260, 130, 25))
+        self.textEdit_Maths.setPlaceholderText("Enter Mathematics Marks")
         self.textEdit_Maths.setToolTip("Enter Mathematics Marks")
-        self.textEdit_Science = QTextEdit("0",self)  # Creates Text Edit for Science
-        self.textEdit_Science.setGeometry(QRect(160, 300, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
-        self.textEdit_Science.setPalette(Palette)
+        self.textEdit_Science = QLineEdit(self)  # Creates Text Edit for Science
+        self.textEdit_Science.setGeometry(QRect(160, 300, 130, 25))
+        self.textEdit_Science.setPlaceholderText("Enter Science Marks")
         self.textEdit_Science.setToolTip("Enter Science Marks")
-        self.textEdit_Social = QTextEdit("0",self)  # Creates Text Edit for Social
-        self.textEdit_Social.setGeometry(QRect(160, 340, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkBlue)
-        self.textEdit_Social.setPalette(Palette)
+        self.textEdit_Social = QLineEdit(self)  # Creates Text Edit for Social
+        self.textEdit_Social.setGeometry(QRect(160, 340, 130, 25))
+        self.textEdit_Social.setPlaceholderText("Enter Social Marks")
         self.textEdit_Social.setToolTip("Enter Social Marks")
-        self.textEdit_Total = QTextEdit(self)  # Creates Text Edit for Total Marks
+        self.textEdit_Total = QLineEdit(self)  # Creates Text Edit for Total Marks
         self.textEdit_Total.setGeometry(QRect(540, 170, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.magenta)
-        self.textEdit_Total.setPalette(Palette)
-        self.textEdit_Average = QTextEdit(self)  # Creates Text Edit for Average Marks
+        self.textEdit_Average = QLineEdit(self)  # Creates Text Edit for Average Marks
         self.textEdit_Average.setGeometry(QRect(540, 210, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkRed)
-        self.textEdit_Average.setPalette(Palette)
-        self.textEdit_Percentage = QTextEdit(self)  # Creates Text Edit for Percentage of the Total Marks
+        self.textEdit_Percentage = QLineEdit(self)  # Creates Text Edit for Percentage of the Total Marks
         self.textEdit_Percentage.setGeometry(QRect(540, 250, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkMagenta)
-        self.textEdit_Percentage.setPalette(Palette)
-        self.textEdit__Division = QTextEdit(self)  # Creates Text Edit for Division
+        self.textEdit__Division = QLineEdit(self)  # Creates Text Edit for Division
         self.textEdit__Division.setGeometry(QRect(360, 410, 141, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.blue)
-        self.textEdit__Division.setPalette(Palette)
-        self.textEdit_Result = QTextEdit(self)  # Creates Text Edit for Result
+        self.textEdit_Result = QLineEdit(self)  # Creates Text Edit for Result
         self.textEdit_Result.setGeometry(QRect(360, 450, 104, 31))
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.darkBlue)
-        self.textEdit_Result.setPalette(Palette)
         self.textEdit__Message = QTextEdit("Fill up your Data and Enter Your Marks of all Subjects",self)  # Creates Text Edit for Message
         self.textEdit__Message.setGeometry(QRect(360, 490, 260, 45))
         Palette = QtGui.QPalette()
@@ -386,95 +347,137 @@ class Window(QMainWindow):
         saveasfileAct.triggered.connect(self.Save)
         openfilecldAct.triggered.connect(self.Open)
         openfiledeskAct.triggered.connect(self.Open)
+        Undo.triggered.connect(self.Undo)
+        Redo.triggered.connect(self.Redo)
+        Cut.triggered.connect(self.Cut)
+        Copy.triggered.connect(self.Copy)
+        Paste.triggered.connect(self.Paste)
+        Delete.triggered.connect(self.Delete)
+        SA.triggered.connect(self.SelectAll)
         StatusBar.triggered.connect(self.Status_Bar)
         Exit.triggered.connect(self.Exit)
+        self.pushButton_Get_Result.setDisabled(True)
+        self.lineEdit_Student_name.textChanged.connect(self.Disable)
+        self.lineEdit_Father_name.textChanged.connect(self.Disable)
+        self.lineEdit_Hall_Ticket_Number.textChanged.connect(self.Disable)
+        self.textEdit_Telugu.textChanged.connect(self.Disable)
+        self.textEdit_Hindi.textChanged.connect(self.Disable)
+        self.textEdit_English.textChanged.connect(self.Disable)
+        self.textEdit_Maths.textChanged.connect(self.Disable)
+        self.textEdit_Science.textChanged.connect(self.Disable)
+        self.textEdit_Social.textChanged.connect(self.Disable)
+
+    def Disable(self):
+        if len(self.lineEdit_Student_name.text()) > 0 and len(self.lineEdit_Father_name.text()) > 0 and len(self.lineEdit_Hall_Ticket_Number.text()) > 0 and len(self.textEdit_Telugu.text()) > 0 and len(self.textEdit_Hindi.text()) > 0 and len(self.textEdit_English.text()) > 0 and len(self.textEdit_Maths.text()) > 0 and len(self.textEdit_Science.text()) > 0 and len(self.textEdit_Social.text()) > 0:
+            self.pushButton_Get_Result.setEnabled(True)
+
+        if len(self.lineEdit_Student_name.text()) == 0 or len(self.lineEdit_Father_name.text()) == 0 or len(self.lineEdit_Hall_Ticket_Number.text()) == 0 or len(self.textEdit_Telugu.text())==0 or len(self.textEdit_Hindi.text())==0 or len(self.textEdit_English.text())==0 or len(self.textEdit_Maths.text())==0 or len(self.textEdit_Science.text())==0 or len(self.textEdit_Social.text())==0:
+            self.pushButton_Get_Result.setDisabled(True)
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        self.comboBox_Class.setItemText(0, _translate("Dialog", "Select Your Class"))
-        self.comboBox_Class.setItemText(1, _translate("Dialog", "1st Class"))
-        self.comboBox_Class.setItemText(2, _translate("Dialog", "2nd Class"))
-        self.comboBox_Class.setItemText(3, _translate("Dialog", "3rd Class"))
-        self.comboBox_Class.setItemText(4, _translate("Dialog", "4th Class"))
-        self.comboBox_Class.setItemText(5, _translate("Dialog", "5th Class"))
-        self.comboBox_Class.setItemText(6, _translate("Dialog", "6th Class"))
-        self.comboBox_Class.setItemText(7, _translate("Dialog", "7th Class"))
-        self.comboBox_Class.setItemText(8, _translate("Dialog", "8th Class"))
-        self.comboBox_Class.setItemText(9, _translate("Dialog", "9th Class"))
-        self.comboBox_Class.setItemText(10, _translate("Dialog", "10th Class"))
+        self.comboBox_Class.setToolTip("Class")
+        self.comboBox_Class.setItemText(0, _translate("MainWindow","Select Your Class"))
+        self.comboBox_Class.setItemText(1, _translate("MainWindow", "1st Class"))
+        self.comboBox_Class.setItemText(2, _translate("MainWindow", "2nd Class"))
+        self.comboBox_Class.setItemText(3, _translate("MainWindow", "3rd Class"))
+        self.comboBox_Class.setItemText(4, _translate("MainWindow", "4th Class"))
+        self.comboBox_Class.setItemText(5, _translate("MainWindow", "5th Class"))
+        self.comboBox_Class.setItemText(6, _translate("MainWindow", "6th Class"))
+        self.comboBox_Class.setItemText(7, _translate("MainWindow", "7th Class"))
+        self.comboBox_Class.setItemText(8, _translate("MainWindow", "8th Class"))
+        self.comboBox_Class.setItemText(9, _translate("MainWindow", "9th Class"))
+        self.comboBox_Class.setItemText(10, _translate("MainWindow", "10th Class"))
+
+    def Undo(self):
+        pass
+
+    def Redo(self):
+        pass
+
+    def Cut(self):
+        pass
+
+    def Copy(self):
+        pass
+
+    def Paste(self):
+        pass
+
+    def Delete(self):
+        pass
+
+    def SelectAll(self):
+        pass
 
     def Calculate(self):
-        if float(self.textEdit_Telugu.toPlainText()) and float(self.textEdit_Hindi.toPlainText()) and float(
-                self.textEdit_English.toPlainText()) and float(self.textEdit_Maths.toPlainText()) and float(
-                self.textEdit_Science.toPlainText()) and float(self.textEdit_Social.toPlainText()) > 100:
+        if float(self.textEdit_Telugu.text())>100 and float(self.textEdit_Hindi.text())>100 and float(self.textEdit_English.text())>100 and float(self.textEdit_Maths.text())>100 and float(self.textEdit_Science.text())>100 and float(self.textEdit_Social.text())>100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your Marks of all Subjects in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Telugu.toPlainText()) > 100:
+        elif float(self.textEdit_Telugu.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your Telugu Marks in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Hindi.toPlainText()) > 100:
+        elif float(self.textEdit_Hindi.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your Hindi Marks in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_English.toPlainText()) > 100:
+        elif float(self.textEdit_English.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your English Marks in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Maths.toPlainText()) > 100:
+        elif float(self.textEdit_Maths.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your Maths Marks in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Science.toPlainText()) > 100:
+        elif float(self.textEdit_Science.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your Science Marks in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Social.toPlainText()) > 100:
+        elif float(self.textEdit_Social.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
             self.textEdit__Message.setText("Please Enter Your Social Marks in Range 1 to 100")
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Telugu.toPlainText()) < 35 or \
-                float(self.textEdit_Hindi.toPlainText()) < 35 or \
-                float(self.textEdit_English.toPlainText()) < 35 or \
-                float(self.textEdit_Maths.toPlainText()) < 35 or \
-                float(self.textEdit_Science.toPlainText()) < 35 or \
-                float(self.textEdit_Social.toPlainText()) < 35:
+        elif float(self.textEdit_Telugu.text()) < 35 or \
+                float(self.textEdit_Hindi.text()) < 35 or \
+                float(self.textEdit_English.text()) < 35 or \
+                float(self.textEdit_Maths.text()) < 35 or \
+                float(self.textEdit_Science.text()) < 35 or \
+                float(self.textEdit_Social.text()) < 35:
             self.textEdit_Result.setText("Failed")
             self.textEdit__Division.clear()
             self.textEdit__Message.clear()
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Telugu.toPlainText()) <= 100 and float(self.textEdit_Telugu.toPlainText()) >= 35 and \
-                float(self.textEdit_Hindi.toPlainText()) <= 100 and float(self.textEdit_Hindi.toPlainText()) >= 35 and \
-                float(self.textEdit_English.toPlainText()) <= 100 and float(
-            self.textEdit_English.toPlainText()) >= 35 and \
-                float(self.textEdit_Maths.toPlainText()) <= 100 and float(self.textEdit_Maths.toPlainText()) >= 35 and \
-                float(self.textEdit_Science.toPlainText()) <= 100 and float(
-            self.textEdit_Science.toPlainText()) >= 35 and \
-                float(self.textEdit_Social.toPlainText()) <= 100 and float(self.textEdit_Social.toPlainText()) >= 35:
+        elif float(self.textEdit_Telugu.text()) <= 100 and float(self.textEdit_Telugu.text()) >= 35 and \
+                float(self.textEdit_Hindi.text()) <= 100 and float(self.textEdit_Hindi.text()) >= 35 and \
+                float(self.textEdit_English.text()) <= 100 and float(self.textEdit_English.text()) >= 35 and \
+                float(self.textEdit_Maths.text()) <= 100 and float(self.textEdit_Maths.text()) >= 35 and \
+                float(self.textEdit_Science.text()) <= 100 and float(self.textEdit_Science.text()) >= 35 and \
+                float(self.textEdit_Social.text()) <= 100 and float(self.textEdit_Social.text()) >= 35:
             self.textEdit_Result.setText("Passed")
             self.textEdit__Message.clear()
         else:
@@ -487,17 +490,15 @@ class Window(QMainWindow):
 
         #####  Creating a Function Named Total_Result   ######
     def Total_Result(self):
-        totalsum = float(self.textEdit_Telugu.toPlainText()) + float(self.textEdit_Hindi.toPlainText()) + float(
-            self.textEdit_English.toPlainText()) + float(self.textEdit_Maths.toPlainText()) + float(
-            self.textEdit_Science.toPlainText()) + float(self.textEdit_Social.toPlainText())
+        totalsum = (float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(self.textEdit_Science.text()) + float(self.textEdit_Social.text()))
         self.textEdit_Total.setText(str("{:.2f}".format(totalsum)))
-        Avg = (float(self.textEdit_Telugu.toPlainText()) + float(self.textEdit_Hindi.toPlainText()) + float(
-            self.textEdit_English.toPlainText()) + float(self.textEdit_Maths.toPlainText()) + float(
-            self.textEdit_Science.toPlainText()) + float(self.textEdit_Social.toPlainText())) / 6
+        Avg = (float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
+            self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
+            self.textEdit_Science.text()) + float(self.textEdit_Social.text())) / 6
         self.textEdit_Average.setText(str("{:.2f}".format(Avg)))
-        self.Percent = ((float(self.textEdit_Telugu.toPlainText()) + float(self.textEdit_Hindi.toPlainText()) + float(
-            self.textEdit_English.toPlainText()) + float(self.textEdit_Maths.toPlainText()) + float(
-            self.textEdit_Science.toPlainText()) + float(self.textEdit_Social.toPlainText())) / 600) * 100
+        self.Percent = ((float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
+            self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
+            self.textEdit_Science.text()) + float(self.textEdit_Social.text())) / 600) * 100
         self.textEdit_Percentage.setText(str("{:.1f} %".format(self.Percent)))
 
         if self.Percent >= 70:
@@ -534,12 +535,6 @@ class Window(QMainWindow):
         self.lineEdit_Hall_Ticket_Number.clear()
         self.textEdit__Message.clear()
         self.textEdit__Message.setText("Fill up your Data and Enter Your Marks of all Subjects")
-        self.textEdit_Telugu.setText("0")
-        self.textEdit_Hindi.setText("0")
-        self.textEdit_English.setText("0")
-        self.textEdit_Maths.setText("0")
-        self.textEdit_Science.setText("0")
-        self.textEdit_Social.setText("0")
         self.comboBox_Class.clear()
         _translate = QtCore.QCoreApplication.translate
         self.comboBox_Class.addItem("")
@@ -568,7 +563,7 @@ class Window(QMainWindow):
         #####  Creating a Function Named Save   ######
     def Save(self):
         files = [('Text Document', '*.txt'), ('Python File', '*.py'), ("Excel File", '*.XLS'),
-                 ("Word Document File", '.doc')]
+                 ("Word Document File", '.doc'),("Markdown File(Typora)",'*.md')]
         file = filedialog.asksaveasfile(mode="w", filetypes=files, defaultextension=files)
         file.write("******************************Memorandom of Marks******************************")
         text0 = self.lineEdit_Student_name.text(),
@@ -576,17 +571,17 @@ class Window(QMainWindow):
         text2 = self.comboBox_Class.currentText(),
         text3 = self.lineEdit_Hall_Ticket_Number.text(),
         text4 = self.dateEdit.text(),
-        text5 = self.textEdit_Telugu.toPlainText(),
-        text6 = self.textEdit_Hindi.toPlainText(),
-        text7 = self.textEdit_English.toPlainText(),
-        text8 = self.textEdit_Maths.toPlainText(),
-        text9 = self.textEdit_Science.toPlainText(),
-        text10 = self.textEdit_Social.toPlainText(),
-        text11 = self.textEdit_Total.toPlainText(),
-        text12 = self.textEdit_Average.toPlainText(),
-        text13 = self.textEdit_Percentage.toPlainText(),
-        text14 = self.textEdit__Division.toPlainText(),
-        text15 = self.textEdit_Result.toPlainText(),
+        text5 = self.textEdit_Telugu.text(),
+        text6 = self.textEdit_Hindi.text(),
+        text7 = self.textEdit_English.text(),
+        text8 = self.textEdit_Maths.text(),
+        text9 = self.textEdit_Science.text(),
+        text10 = self.textEdit_Social.text(),
+        text11 = self.textEdit_Total.text(),
+        text12 = self.textEdit_Average.text(),
+        text13 = self.textEdit_Percentage.text(),
+        text14 = self.textEdit__Division.text(),
+        text15 = self.textEdit_Result.text(),
         file.write("\nStudent Name                                          :   ")
         file.writelines(text0)
         file.write("\nFather's Name                                         :   ")
@@ -644,7 +639,7 @@ class Window(QMainWindow):
         self.statusBar().setStyleSheet("background-color : pink")
 
     def Exit(self):
-        exit(Window)
+        QtWidgets.QApplication.quit()
 
 def Main():
     App = QApplication(sys.argv)

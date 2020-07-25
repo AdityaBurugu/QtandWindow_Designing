@@ -340,11 +340,10 @@ class Ui_Dialog(object):
         font.setStrikeOut(False)
         font.setWeight(75)
         self.pushButton_Reset.setFont(font)
-
-        #####  Creating Save button  ######
-        self.pushButton_Save = QtWidgets.QPushButton(Dialog)   #Creates Push Button Save
-        self.pushButton_Save.setGeometry(QtCore.QRect(640, 445, 80, 28))   #Dimensions of Push Button Save
-        self.pushButton_Save.setObjectName("pushButton_Save")   #Sets Object Name
+        self.pushButton_Save = QtWidgets.QPushButton(Dialog)  # Creates Push Button Save
+        self.pushButton_Save.setGeometry(QtCore.QRect(640, 445, 80, 28))  # Dimensions of Push Button Save
+        self.pushButton_Save.setObjectName("pushButton_Save")  #
+        #####  Creating Save button  ######Sets Object Name
         font = QtGui.QFont()   #Sets Font
         font.setBold(True)
         font.setUnderline(True)

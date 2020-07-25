@@ -19,11 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac0e738a-5e5d-4e9f-84e9-015d2f5dfc1a" name="Default Changelist" comment="In Windows, added colors">
+    <list default="true" id="ac0e738a-5e5d-4e9f-84e9-015d2f5dfc1a" name="Default Changelist" comment="Open to see">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qt_Dialog/Qt_Design.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Qt_Dialog/Qt_Design.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Window/Icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Window/Icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Window/Window_Design.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Window/Window_Design.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Qt_Dialog/Qt_Design.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Qt_Dialog/Qt_Design.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Window/Window_Design.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Window/Window_Design.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,10 +52,32 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aditya Burugu\PycharmProjects\Qt&amp;Window_Designing\Project" />
       <recent name="C:\Users\Aditya Burugu\PycharmProjects\Qt&amp;Window_Designing\Window" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Window_Design">
+  <component name="RunManager" selected="Python.Window_Design ">
+    <configuration name="Qt_Design (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Qt&amp;Window_Designing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project/Qt_Dialog" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project/Qt_Dialog/Qt_Design.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Qt_Design" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Qt&amp;Window_Designing" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -70,6 +91,48 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Qt_Dialog/Qt_Design.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Qt_Design" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Qt&amp;Window_Designing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project/Qt_Dialog" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project/Qt_Dialog/Qt_Design.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Window_Design " type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Qt&amp;Window_Designing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project/Window" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project/Window/Window_Design.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -99,7 +162,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="yt (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Window_Design" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Qt&amp;Window_Designing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -107,11 +170,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Window" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project/Window" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Window/yt.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project/Window/Window_Design.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -120,33 +183,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="yt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Qt&amp;Window_Designing" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Aditya Burugu\PycharmProjects\Qt&amp;Window_Designing\Window\yt.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+    <list>
+      <item itemvalue="Python.Qt_Design (1)" />
+      <item itemvalue="Python.Qt_Design" />
+      <item itemvalue="Python.Window_Design " />
+      <item itemvalue="Python.Window_Design" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Window_Design " />
+        <item itemvalue="Python.Qt_Design (1)" />
         <item itemvalue="Python.Window_Design" />
-        <item itemvalue="Python.yt (1)" />
-        <item itemvalue="Python.yt" />
         <item itemvalue="Python.Qt_Design" />
+        <item itemvalue="Python.Window_Design" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594702127882</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Open to see">
+      <created>1594744604446</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594744604446</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,9 +241,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="In Windows, added colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="In Windows, added colors" />
+    <MESSAGE value="Open to see" />
+    <option name="LAST_COMMIT_MESSAGE" value="Open to see" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="137" y="17" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595347220032">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="17" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1595347220032" />
+    <state x="463" y="117" key="FileChooserDialogImpl" timestamp="1594888275542">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="117" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594888275542" />
     <state x="526" y="259" key="Github.ShareDialog" timestamp="1594567117872">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -196,64 +261,53 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="422" y="67" key="Github.UntrackedFilesDialog/0.0.1366.728@0.0.1366.728" timestamp="1594567200295" />
-    <state width="1344" height="174" key="GridCell.Tab.0.bottom" timestamp="1594715385208">
+    <state width="1366" height="225" key="GridCell.Tab.0.bottom" timestamp="1595700330098">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594715385208" />
-    <state width="1344" height="174" key="GridCell.Tab.0.center" timestamp="1594715385207">
+    <state width="1366" height="225" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595700330098" />
+    <state width="1366" height="225" key="GridCell.Tab.0.center" timestamp="1595700330098">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594715385207" />
-    <state width="1344" height="174" key="GridCell.Tab.0.left" timestamp="1594715385207">
+    <state width="1366" height="225" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595700330098" />
+    <state width="1366" height="225" key="GridCell.Tab.0.left" timestamp="1595700330098">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594715385207" />
-    <state width="1344" height="174" key="GridCell.Tab.0.right" timestamp="1594715385208">
+    <state width="1366" height="225" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595700330098" />
+    <state width="1366" height="225" key="GridCell.Tab.0.right" timestamp="1595700330098">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594715385208" />
-    <state width="1344" height="217" key="GridCell.Tab.1.bottom" timestamp="1594708123220">
+    <state width="1366" height="225" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595700330098" />
+    <state width="1366" height="225" key="GridCell.Tab.1.bottom" timestamp="1595700330099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="217" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594708123220" />
-    <state width="1344" height="217" key="GridCell.Tab.1.center" timestamp="1594708123220">
+    <state width="1366" height="225" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595700330099" />
+    <state width="1366" height="225" key="GridCell.Tab.1.center" timestamp="1595700330099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="217" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1594708123220" />
-    <state width="1344" height="217" key="GridCell.Tab.1.left" timestamp="1594708123220">
+    <state width="1366" height="225" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1595700330099" />
+    <state width="1366" height="225" key="GridCell.Tab.1.left" timestamp="1595700330099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="217" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1594708123220" />
-    <state width="1344" height="217" key="GridCell.Tab.1.right" timestamp="1594708123220">
+    <state width="1366" height="225" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1595700330099" />
+    <state width="1366" height="225" key="GridCell.Tab.1.right" timestamp="1595700330099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="217" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1594708123220" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1594566649460">
+    <state width="1366" height="225" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1595700330099" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1595347119040">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594566649460" />
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1594702134477">
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1595347119040" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2" timestamp="1594744638425">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594702134477" />
+    <state x="275" y="95" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1594744638425" />
     <state x="526" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1594707278663">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="526" y="135" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1594707278663" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1594615638665">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1595602926504">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1594615638665" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Project/Qt_Dialog/Qt_Design.py</url>
-          <line>344</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1595602926504" />
   </component>
 </project>
