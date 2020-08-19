@@ -1,8 +1,11 @@
-from tkinter import filedialog
-from PyQt5.QtWidgets import QApplication, QMainWindow,QDateEdit,QFrame, QPushButton,QTextEdit, QLabel,QLineEdit,QComboBox, QMenu, QAction
+from PyQt5.QtWidgets import QApplication, QMainWindow,QDateEdit,QFrame, QPushButton,QTextEdit, QLabel,\
+    QLineEdit,QComboBox, QMenu, QAction,QTableWidget,QTableWidgetItem,QHeaderView,QVBoxLayout,QWidget
 import sys
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QRect
+import matplotlib.pyplot as plt
+import matplotlib.patheffects as patheffects
+import pyautogui
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -33,10 +36,10 @@ class Window(QMainWindow):
         openFileMenu = QMenu('Open', self)
         #savefileAct = QAction("Save", self)
         #savefileAct.setShortcut("Ctrl+S")
-        saveasfileAct = QAction("Save As", self)
+        saveasfileAct = QAction("Save", self)
         Icon = 'Save.png'
         saveasfileAct.setIcon(QtGui.QIcon(Icon))
-        saveasfileAct.setShortcut("Ctrl+Alt+S")
+        saveasfileAct.setShortcut("Ctrl+S")
         printfileAct = QAction("Print", self)
         printfileAct.setShortcut("Ctrl+P")
         Exit = QAction("Exit", self)
@@ -250,6 +253,7 @@ class Window(QMainWindow):
         self.comboBox_Class.setGeometry(QRect(410, 80, 128, 22))  # Dimensions of Combo Box of Class
         self.comboBox_Class.setEditable(False)
         self.comboBox_Class.setObjectName("comboBox_Class")  # Sets Object Name
+        self.comboBox_Class.setObjectName("comboBox_Class")  # Sets Object Name
         self.comboBox_Class.addItem("")
         self.comboBox_Class.addItem("")
         self.comboBox_Class.addItem("")
@@ -308,9 +312,6 @@ class Window(QMainWindow):
         self.textEdit__Message.setPalette(Palette)
         self.pushButton_Get_Result = QPushButton("Get Result",self)  # Creates Push Button Get Result
         self.pushButton_Get_Result.setGeometry(QRect(450, 120, 93, 28))  # Dimensions of Push Button Get Result
-        Palette = QtGui.QPalette()
-        Palette.setColor(QtGui.QPalette.Text, QtCore.Qt.red)
-        self.pushButton_Get_Result.setPalette(Palette)
         font = QtGui.QFont()  # Sets Font
         font.setBold(True)
         font.setUnderline(True)
@@ -326,6 +327,36 @@ class Window(QMainWindow):
         font.setStrikeOut(False)
         font.setWeight(75)
         self.pushButton_Reset.setFont(font)
+        self.pushbutton_Graph = QPushButton("Graph",self)
+        self.pushbutton_Graph.setGeometry(100,430,93,28)
+        font = QtGui.QFont()  # Sets Font
+        font.setBold(True)
+        font.setUnderline(True)
+        font.setItalic(True)
+        font.setStrikeOut(False)
+        font.setWeight(75)
+        self.pushbutton_Graph.setFont(font)
+        self.pushbutton_Graph.hide()
+        self.pushbutton_Pie = QPushButton("Pie Chart", self)
+        self.pushbutton_Pie.setGeometry(100, 470, 93, 28)
+        font = QtGui.QFont()  # Sets Font
+        font.setBold(True)
+        font.setUnderline(True)
+        font.setItalic(True)
+        font.setStrikeOut(False)
+        font.setWeight(75)
+        self.pushbutton_Pie.setFont(font)
+        self.pushbutton_Pie.hide()
+        self.pushbutton_Save = QPushButton("Save", self)
+        self.pushbutton_Save.setGeometry(100, 510, 93, 28)
+        font = QtGui.QFont()  # Sets Font
+        font.setBold(True)
+        font.setUnderline(True)
+        font.setItalic(True)
+        font.setStrikeOut(False)
+        font.setWeight(75)
+        self.pushbutton_Save.setFont(font)
+        self.pushbutton_Save.hide()
         self.frame = QFrame(self)
         self.frame.setGeometry(QRect(250, 400, 375, 145))
         font = QtGui.QFont()
@@ -344,6 +375,9 @@ class Window(QMainWindow):
         self.pushButton_Get_Result.clicked.connect(self.Total_Result)
         self.pushButton_Get_Result.clicked.connect(self.Calculate)
         self.pushButton_Reset.clicked.connect(self.Reset)
+        self.pushbutton_Graph.clicked.connect(self.Graph)
+        self.pushbutton_Pie.clicked.connect(self.Pie)
+        self.pushbutton_Save.clicked.connect(self.Save)
         saveasfileAct.triggered.connect(self.Save)
         openfilecldAct.triggered.connect(self.Open)
         openfiledeskAct.triggered.connect(self.Open)
@@ -373,6 +407,10 @@ class Window(QMainWindow):
 
         if len(self.lineEdit_Student_name.text()) == 0 or len(self.lineEdit_Father_name.text()) == 0 or len(self.lineEdit_Hall_Ticket_Number.text()) == 0 or len(self.textEdit_Telugu.text())==0 or len(self.textEdit_Hindi.text())==0 or len(self.textEdit_English.text())==0 or len(self.textEdit_Maths.text())==0 or len(self.textEdit_Science.text())==0 or len(self.textEdit_Social.text())==0:
             self.pushButton_Get_Result.setDisabled(True)
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
+
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
@@ -390,10 +428,10 @@ class Window(QMainWindow):
         self.comboBox_Class.setItemText(10, _translate("MainWindow", "10th Class"))
 
     def Undo(self):
-        pass
+       pass
 
     def Redo(self):
-        pass
+       pass
 
     def Cut(self):
         pass
@@ -418,6 +456,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_Telugu.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
@@ -425,6 +466,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_Hindi.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
@@ -432,6 +476,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_English.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
@@ -439,6 +486,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_Maths.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
@@ -446,6 +496,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_Science.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
@@ -453,6 +506,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_Social.text()) > 100:
             self.textEdit_Result.clear()
             self.textEdit__Division.clear()
@@ -460,6 +516,9 @@ class Window(QMainWindow):
             self.textEdit_Total.clear()
             self.textEdit_Average.clear()
             self.textEdit_Percentage.clear()
+            self.pushbutton_Graph.hide()
+            self.pushbutton_Pie.hide()
+            self.pushbutton_Save.hide()
         elif float(self.textEdit_Telugu.text()) < 35 or \
                 float(self.textEdit_Hindi.text()) < 35 or \
                 float(self.textEdit_English.text()) < 35 or \
@@ -516,7 +575,9 @@ class Window(QMainWindow):
         else:
             self.textEdit__Division.setText(" ")
             self.textEdit__Message.clear()
-
+        self.pushbutton_Graph.show()
+        self.pushbutton_Pie.show()
+        self.pushbutton_Save.show()
         #####  Creating a Function Named Reset   ######
     def Reset(self):
         self.textEdit_Telugu.clear()
@@ -559,12 +620,13 @@ class Window(QMainWindow):
         self.comboBox_Class.setItemText(8, _translate("Dialog", "8th Class"))
         self.comboBox_Class.setItemText(9, _translate("Dialog", "9th Class"))
         self.comboBox_Class.setItemText(10, _translate("Dialog", "10th Class"))
+        self.pushbutton_Graph.hide()
+        self.pushbutton_Pie.hide()
+        self.pushbutton_Save.hide()
 
         #####  Creating a Function Named Save   ######
     def Save(self):
-        files = [('Text Document', '*.txt'), ('Python File', '*.py'), ("Excel File", '*.XLS'),
-                 ("Word Document File", '.doc'),("Markdown File(Typora)",'*.md')]
-        file = filedialog.asksaveasfile(mode="w", filetypes=files, defaultextension=files)
+        file = open(self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}.txt", 'w')
         file.write("******************************Memorandom of Marks******************************")
         text0 = self.lineEdit_Student_name.text(),
         text1 = self.lineEdit_Father_name.text(),
@@ -628,15 +690,64 @@ class Window(QMainWindow):
         sys.exit()
 
     def Open(self):
-        files = [('Text Document', '*.txt'), ('Python File', '*.py'), ("Excel File", '*.XLS'),
-                 ("Word Document File", '*.doc')]
-        file = filedialog.askopenfile(mode='r', filetypes=files, defaultextension = files)
-        file.close()
-        sys.exit()
+        pass
 
     def Status_Bar(self):
         self.statusBar().showMessage("Aditya Burugu's Program")
-        self.statusBar().setStyleSheet("background-color : pink")
+        self.statusBar().setStyleSheet("background-color : lightgreen")
+
+    def Graph(self):
+        T = float(self.textEdit_Telugu.text())
+        H = float(self.textEdit_Hindi.text())
+        E = float(self.textEdit_English.text())
+        M = float(self.textEdit_Maths.text())
+        SC = float(self.textEdit_Science.text())
+        SO = float(self.textEdit_Social.text())
+        names = [' T ', ' H ', ' E', ' M ',' Sci ', ' Soc']
+        names_= [' Telugu ', ' Hindi ', ' English', ' Maths ',' Science ', ' Social']
+        values = [T,H,E,M,SC,SO]
+        plt.figure(figsize=(12.4, 4))
+        plt.subplot(131)
+        plt.xlabel("Subjects",color='orange')
+        plt.ylabel("Marks",color='orange')
+        plt.bar(names, values,color='orange')
+        plt.subplot(132)
+        plt.xlabel("Subjects",color='magenta')
+        plt.ylabel("Marks",color='magenta')
+        plt.scatter(names_, values,color='magenta',marker='x')
+        plt.subplot(133)
+        plt.xlabel("Subjects",color='red')
+        plt.ylabel("Marks",color='red')
+        plt.plot(names_, values,color='red',marker = 'o',
+        path_effects = [patheffects.SimpleLineShadow(),
+        patheffects.Normal()])
+        path_effects = [patheffects.withSimplePatchShadow()]
+        plt.suptitle('Performance Report')
+        graph="Graph of "
+        plt.savefig(graph+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}")
+        plt.show()
+
+    def Pie(self):
+        # Data to plot
+        T = float(self.textEdit_Telugu.text())
+        H = float(self.textEdit_Hindi.text())
+        E = float(self.textEdit_English.text())
+        M = float(self.textEdit_Maths.text())
+        SC = float(self.textEdit_Science.text())
+        SO = float(self.textEdit_Social.text())
+        labels = 'Telugu', 'Hindi', 'English', 'Mathematics', 'Science', 'Social'
+        sizes = [T, H, E, M, SC, SO]
+        colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'blue', 'red']
+        explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1)  # explode 1st slice
+
+        # Plot
+        plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+                autopct='%1.1f%%', shadow=True, startangle=180)
+
+        plt.axis('equal')
+        pie="Pie Chart of "
+        plt.savefig(pie+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}")
+        plt.show()
 
     def Exit(self):
         QtWidgets.QApplication.quit()
@@ -645,6 +756,7 @@ def Main():
     App = QApplication(sys.argv)
     window = Window()
     sys.exit(App.exec())
+
 
 if __name__ == "__main__":
     Main()
