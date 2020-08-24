@@ -37,7 +37,7 @@ class Window(QMainWindow):
         #savefileAct = QAction("Save", self)
         #savefileAct.setShortcut("Ctrl+S")
         saveasfileAct = QAction("Save", self)
-        Icon = 'Save.png'
+        Icon = '../Icons/Save.png'
         saveasfileAct.setIcon(QtGui.QIcon(Icon))
         saveasfileAct.setShortcut("Ctrl+S")
         printfileAct = QAction("Print", self)
