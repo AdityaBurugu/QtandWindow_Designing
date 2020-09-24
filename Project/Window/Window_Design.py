@@ -1,11 +1,13 @@
+import os
+import pathlib
+
 from PyQt5.QtWidgets import QApplication, QMainWindow,QDateEdit,QFrame, QPushButton,QTextEdit, QLabel,\
-    QLineEdit,QComboBox, QMenu, QAction,QTableWidget,QTableWidgetItem,QHeaderView,QVBoxLayout,QWidget
+    QLineEdit,QComboBox, QMenu, QAction
 import sys
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtCore import QRect
+from PyQt5.QtCore import QRect, QRegExp
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as patheffects
-import pyautogui
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -17,6 +19,7 @@ class Window(QMainWindow):
         Icon = "Icon.png"
         self.setWindowTitle(title)
         self.setWindowIcon(QtGui.QIcon(Icon))
+        self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint | QtCore.Qt.CustomizeWindowHint)
         self.setGeometry(left,  top, width, height)
         self.UiComponents()
         self.show()
@@ -37,7 +40,7 @@ class Window(QMainWindow):
         #savefileAct = QAction("Save", self)
         #savefileAct.setShortcut("Ctrl+S")
         saveasfileAct = QAction("Save", self)
-        Icon = '../Icons/Save.png'
+        Icon = 'Save.png'
         saveasfileAct.setIcon(QtGui.QIcon(Icon))
         saveasfileAct.setShortcut("Ctrl+S")
         printfileAct = QAction("Print", self)
@@ -275,26 +278,32 @@ class Window(QMainWindow):
         self.textEdit_Telugu.setGeometry(QRect(160, 140, 130, 25))
         self.textEdit_Telugu.setPlaceholderText("Enter Telugu Marks")
         self.textEdit_Telugu.setToolTip("Enter Telugu Marks")
+        self.textEdit_Telugu.setMaxLength(3)
         self.textEdit_Hindi = QLineEdit(self)  # Creates Text Edit for Hindi
         self.textEdit_Hindi.setGeometry(QRect(160, 180, 130, 25))
         self.textEdit_Hindi.setPlaceholderText("Enter Hindi Marks")
         self.textEdit_Hindi.setToolTip("Enter Hindi Marks")
+        self.textEdit_Hindi.setMaxLength(3)
         self.textEdit_English = QLineEdit(self)  # Creates Text Edit for English
         self.textEdit_English.setGeometry(QRect(160, 220, 130, 25))
         self.textEdit_English.setPlaceholderText("Enter English Marks")
         self.textEdit_English.setToolTip("Enter English Marks")
+        self.textEdit_English.setMaxLength(3)
         self.textEdit_Maths = QLineEdit(self)  # Creates Text Edit for Maths
         self.textEdit_Maths.setGeometry(QRect(160, 260, 130, 25))
         self.textEdit_Maths.setPlaceholderText("Enter Mathematics Marks")
         self.textEdit_Maths.setToolTip("Enter Mathematics Marks")
+        self.textEdit_Maths.setMaxLength(3)
         self.textEdit_Science = QLineEdit(self)  # Creates Text Edit for Science
         self.textEdit_Science.setGeometry(QRect(160, 300, 130, 25))
         self.textEdit_Science.setPlaceholderText("Enter Science Marks")
         self.textEdit_Science.setToolTip("Enter Science Marks")
+        self.textEdit_Science.setMaxLength(3)
         self.textEdit_Social = QLineEdit(self)  # Creates Text Edit for Social
         self.textEdit_Social.setGeometry(QRect(160, 340, 130, 25))
         self.textEdit_Social.setPlaceholderText("Enter Social Marks")
         self.textEdit_Social.setToolTip("Enter Social Marks")
+        self.textEdit_Social.setMaxLength(3)
         self.textEdit_Total = QLineEdit(self)  # Creates Text Edit for Total Marks
         self.textEdit_Total.setGeometry(QRect(540, 170, 104, 31))
         self.textEdit_Average = QLineEdit(self)  # Creates Text Edit for Average Marks
@@ -449,135 +458,158 @@ class Window(QMainWindow):
         pass
 
     def Calculate(self):
-        if float(self.textEdit_Telugu.text())>100 and float(self.textEdit_Hindi.text())>100 and float(self.textEdit_English.text())>100 and float(self.textEdit_Maths.text())>100 and float(self.textEdit_Science.text())>100 and float(self.textEdit_Social.text())>100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your Marks of all Subjects in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_Telugu.text()) > 100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your Telugu Marks in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_Hindi.text()) > 100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your Hindi Marks in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_English.text()) > 100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your English Marks in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_Maths.text()) > 100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your Maths Marks in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_Science.text()) > 100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your Science Marks in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_Social.text()) > 100:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.setText("Please Enter Your Social Marks in Range 1 to 100")
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-            self.pushbutton_Graph.hide()
-            self.pushbutton_Pie.hide()
-            self.pushbutton_Save.hide()
-        elif float(self.textEdit_Telugu.text()) < 35 or \
-                float(self.textEdit_Hindi.text()) < 35 or \
-                float(self.textEdit_English.text()) < 35 or \
-                float(self.textEdit_Maths.text()) < 35 or \
-                float(self.textEdit_Science.text()) < 35 or \
-                float(self.textEdit_Social.text()) < 35:
-            self.textEdit_Result.setText("Failed")
-            self.textEdit__Division.clear()
-            self.textEdit__Message.clear()
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-        elif float(self.textEdit_Telugu.text()) <= 100 and float(self.textEdit_Telugu.text()) >= 35 and \
-                float(self.textEdit_Hindi.text()) <= 100 and float(self.textEdit_Hindi.text()) >= 35 and \
-                float(self.textEdit_English.text()) <= 100 and float(self.textEdit_English.text()) >= 35 and \
-                float(self.textEdit_Maths.text()) <= 100 and float(self.textEdit_Maths.text()) >= 35 and \
-                float(self.textEdit_Science.text()) <= 100 and float(self.textEdit_Science.text()) >= 35 and \
-                float(self.textEdit_Social.text()) <= 100 and float(self.textEdit_Social.text()) >= 35:
-            self.textEdit_Result.setText("Passed")
-            self.textEdit__Message.clear()
-        else:
-            self.textEdit_Result.clear()
-            self.textEdit__Division.clear()
-            self.textEdit__Message.clear()
-            self.textEdit_Total.clear()
-            self.textEdit_Average.clear()
-            self.textEdit_Percentage.clear()
-
+        try:
+            if float(self.textEdit_Telugu.text()) > 100 and float(self.textEdit_Hindi.text()) > 100 and float(
+                    self.textEdit_English.text()) > 100 and float(self.textEdit_Maths.text()) > 100 and float(
+                    self.textEdit_Science.text()) > 100 and float(self.textEdit_Social.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your Marks of all Subjects in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your Marks of all Subjects in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_Telugu.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your Telugu Marks in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your Telugu Marks in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_Hindi.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your Hindi Marks in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your Hindi Marks in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_English.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your English Marks in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your English Marks in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_Maths.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your Maths Marks in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your Maths Marks in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_Science.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your Science Marks in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your Science Marks in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_Social.text()) > 100:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(), "Input Error",
+                                              "Please Enter Your Social Marks in Range 1 to 100")
+                self.textEdit__Message.setText("Please Enter Your Social Marks in Range 1 to 100")
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+                self.pushbutton_Graph.hide()
+                self.pushbutton_Pie.hide()
+                self.pushbutton_Save.hide()
+            elif float(self.textEdit_Telugu.text()) < 35 or \
+                    float(self.textEdit_Hindi.text()) < 35 or \
+                    float(self.textEdit_English.text()) < 35 or \
+                    float(self.textEdit_Maths.text()) < 35 or \
+                    float(self.textEdit_Science.text()) < 35 or \
+                    float(self.textEdit_Social.text()) < 35:
+                self.textEdit_Result.setText("Failed")
+                self.textEdit__Division.clear()
+                self.textEdit__Message.clear()
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+            elif float(self.textEdit_Telugu.text()) <= 100 and float(self.textEdit_Telugu.text()) >= 35 and \
+                    float(self.textEdit_Hindi.text()) <= 100 and float(self.textEdit_Hindi.text()) >= 35 and \
+                    float(self.textEdit_English.text()) <= 100 and float(self.textEdit_English.text()) >= 35 and \
+                    float(self.textEdit_Maths.text()) <= 100 and float(self.textEdit_Maths.text()) >= 35 and \
+                    float(self.textEdit_Science.text()) <= 100 and float(self.textEdit_Science.text()) >= 35 and \
+                    float(self.textEdit_Social.text()) <= 100 and float(self.textEdit_Social.text()) >= 35:
+                self.textEdit_Result.setText("Passed")
+                self.textEdit__Message.clear()
+            else:
+                self.textEdit_Result.clear()
+                self.textEdit__Division.clear()
+                self.textEdit__Message.clear()
+                self.textEdit_Total.clear()
+                self.textEdit_Average.clear()
+                self.textEdit_Percentage.clear()
+        except:
+            QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(),"Input Error","Invalid Input Given")
         #####  Creating a Function Named Total_Result   ######
     def Total_Result(self):
-        totalsum = (float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(self.textEdit_Science.text()) + float(self.textEdit_Social.text()))
-        self.textEdit_Total.setText(str("{:.2f}".format(totalsum)))
-        Avg = (float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
-            self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
-            self.textEdit_Science.text()) + float(self.textEdit_Social.text())) / 6
-        self.textEdit_Average.setText(str("{:.2f}".format(Avg)))
-        self.Percent = ((float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
-            self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
-            self.textEdit_Science.text()) + float(self.textEdit_Social.text())) / 600) * 100
-        self.textEdit_Percentage.setText(str("{:.1f} %".format(self.Percent)))
+        try:
+            totalsum = (float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
+                self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
+                self.textEdit_Science.text()) + float(self.textEdit_Social.text()))
+            self.textEdit_Total.setText(str("{:.2f}".format(totalsum)))
+            Avg = (float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
+                self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
+                self.textEdit_Science.text()) + float(self.textEdit_Social.text())) / 6
+            self.textEdit_Average.setText(str("{:.2f}".format(Avg)))
+            self.Percent = ((float(self.textEdit_Telugu.text()) + float(self.textEdit_Hindi.text()) + float(
+                self.textEdit_English.text()) + float(self.textEdit_Maths.text()) + float(
+                self.textEdit_Science.text()) + float(self.textEdit_Social.text())) / 600) * 100
+            self.textEdit_Percentage.setText(str("{:.1f} %".format(self.Percent)))
 
-        if self.Percent >= 70:
-            self.textEdit__Division.setText("Distinction")
-            self.textEdit__Message.clear()
-        elif self.Percent >= 60:
-            self.textEdit__Division.setText("First Class")
-            self.textEdit__Message.clear()
-        elif self.Percent >= 45:
-            self.textEdit__Division.setText("Second Class")
-            self.textEdit__Message.clear()
-        elif self.Percent >= 35:
-            self.textEdit__Division.setText(" ")
-            self.textEdit__Message.clear()
-        else:
-            self.textEdit__Division.setText(" ")
-            self.textEdit__Message.clear()
-        self.pushbutton_Graph.show()
-        self.pushbutton_Pie.show()
-        self.pushbutton_Save.show()
+            if self.Percent >= 70:
+                self.textEdit__Division.setText("Distinction")
+                self.textEdit__Message.clear()
+            elif self.Percent >= 60:
+                self.textEdit__Division.setText("First Class")
+                self.textEdit__Message.clear()
+            elif self.Percent >= 45:
+                self.textEdit__Division.setText("Second Class")
+                self.textEdit__Message.clear()
+            elif self.Percent >= 35:
+                self.textEdit__Division.setText(" ")
+                self.textEdit__Message.clear()
+            else:
+                self.textEdit__Division.setText(" ")
+                self.textEdit__Message.clear()
+            self.pushbutton_Graph.show()
+            self.pushbutton_Pie.show()
+            self.pushbutton_Save.show()
+        except:
+            QtWidgets.QMessageBox.warning(QtWidgets.QMessageBox(),"Input Error","Invalid Input Given")
         #####  Creating a Function Named Reset   ######
     def Reset(self):
         self.textEdit_Telugu.clear()
@@ -626,7 +658,17 @@ class Window(QMainWindow):
 
         #####  Creating a Function Named Save   ######
     def Save(self):
-        file = open(self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}.txt", 'w')
+        path = "../Details/"
+        folder = pathlib.Path(path)
+        if folder.exists():
+            filename = path + self.lineEdit_Student_name.text() + "{" + self.lineEdit_Hall_Ticket_Number.text() + "}.txt"
+            file = open(filename, 'w')
+        else:
+            print("Folder does not exist")
+            print("Creating Folder")
+            os.mkdir(path)
+            filename = path+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}.txt"
+            file = open(filename, 'w')
         file.write("******************************Memorandom of Marks******************************")
         text0 = self.lineEdit_Student_name.text(),
         text1 = self.lineEdit_Father_name.text(),
@@ -708,9 +750,9 @@ class Window(QMainWindow):
         values = [T,H,E,M,SC,SO]
         plt.figure(figsize=(12.4, 4))
         plt.subplot(131)
-        plt.xlabel("Subjects",color='orange')
-        plt.ylabel("Marks",color='orange')
-        plt.bar(names, values,color='orange')
+        plt.xlabel("Subjects",color='blue')
+        plt.ylabel("Marks",color='blue')
+        plt.bar(names, values,color='blue')
         plt.subplot(132)
         plt.xlabel("Subjects",color='magenta')
         plt.ylabel("Marks",color='magenta')
@@ -723,8 +765,17 @@ class Window(QMainWindow):
         patheffects.Normal()])
         path_effects = [patheffects.withSimplePatchShadow()]
         plt.suptitle('Performance Report')
-        graph="Graph of "
-        plt.savefig(graph+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}")
+        path = "../Graphs/"
+        folder = pathlib.Path(path)
+        if folder.exists():
+            graph = "Graph of "
+            plt.savefig(path+graph + self.lineEdit_Student_name.text() + "{" + self.lineEdit_Hall_Ticket_Number.text() + "}")
+        else:
+            print("Folder does not exist")
+            print("Creating Folder")
+            os.mkdir(path)
+            graph="Graph of "
+            plt.savefig(path+graph+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}")
         plt.show()
 
     def Pie(self):
@@ -745,8 +796,17 @@ class Window(QMainWindow):
                 autopct='%1.1f%%', shadow=True, startangle=180)
 
         plt.axis('equal')
-        pie="Pie Chart of "
-        plt.savefig(pie+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}")
+        path = "../Pie Chart Graphs/"
+        folder = pathlib.Path(path)
+        if folder.exists():
+            pie = "Pie Chart of "
+            plt.savefig(path+pie + self.lineEdit_Student_name.text() + "{" + self.lineEdit_Hall_Ticket_Number.text() + "}")
+        else:
+            print("Folder does not exist")
+            print("Creating Folder")
+            os.mkdir(path)
+            pie="Pie Chart of "
+            plt.savefig(path+pie+self.lineEdit_Student_name.text()+"{"+self.lineEdit_Hall_Ticket_Number.text()+"}")
         plt.show()
 
     def Exit(self):
@@ -756,7 +816,6 @@ def Main():
     App = QApplication(sys.argv)
     window = Window()
     sys.exit(App.exec())
-
 
 if __name__ == "__main__":
     Main()
